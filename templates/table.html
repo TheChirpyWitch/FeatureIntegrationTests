@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 style="font-size: 48">Search  {{ search_let }}</h1>
+
+
+<table style="width:90%; height:80%;margin:1%">
+{% for row in range(0, rows) %}
+    <tr>
+    {% for col in range(0, cols) %}
+    	{% if row==search_row and col==search_col %}
+    	 <form action="{{url_for('inter')  }}" method="POST">
+        	<td content-align: center;><input type=submit value="{{ search_let }}" style=" background-color: transparent; border-color: transparent;padding:0;border:0"></td>
+        </form>
+        {% elif (row,col) in skip_values %}
+        	<td> </td>
+    	{% else %}
+        	<td>{{ all_let }}</td>
+    	{% endif %}
+        
+    {% endfor %}
+    </tr>
+    {% endfor %}
+
+</table>
+
+
+
+{% endblock %}

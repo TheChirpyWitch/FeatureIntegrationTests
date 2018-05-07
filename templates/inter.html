@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+	{% if state==0 %}
+	    <div class="row" style="padding-top: 15%;text-align: center">
+	        <h1 style="font-size: 48">Start the test</h1>
+	        <p></p>
+	        <form action="{{ url_for('inter')}}" method="GET" >
+	        	<button type="submit" style="background-color: #333333;
+				    border: none;
+				    color: white;
+				    text-align: center;
+				    text-decoration: none;
+				    display: inline-block;
+				    font-size: 16px;
+				    margin: 4px 2px;
+				    padding: 12px 28px;
+				    cursor: pointer;">
+				    Start	
+				</button>
+	        </form>
+	    </div>
+
+	{% elif state==2 %}
+	    <div class="row">
+	        <h1>Your Performance</h1>
+			<table style="width:100%;margin:8%">
+				{% for ro in range(0,tests) %}
+					<tr>
+					<td> Test {{ro+1}}</td>
+					<td>{{ time[ro].seconds+(time[ro].microseconds/1000000)}}</td>
+					</tr>
+				{% endfor %}
+
+			</table>
+	        <p></p>
+	        <h1>Thank You!</h1>
+	        <h4>Test Made By: Vrinda, Aashish and Sambhav of IIIT Delhi</h4>
+	        
+	    </div>
+	{% else %}
+	    <div class="row">
+	        <h1>
+			{{ time[-1].seconds+(time[-1].microseconds/1000000)}} seconds</h1>
+	        <p>Do you want to continue?</p>
+	        <form action="{{ url_for('inter')}}" method="GET">
+	        	<button type="submit" style="background-color: #333333; 
+				    border: none;
+				    color: white;
+				    text-align: center;
+				    text-decoration: none;
+				    display: inline-block;
+				    font-size: 16px;
+				    margin: 4px 2px;
+				    padding: 12px 28px;
+				    cursor: pointer;">
+				    Yes	
+				</button>
+	        </form>
+	        
+	    </div>
+	{% endif %}
+
+</div>
+{% endblock %}
