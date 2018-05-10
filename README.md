@@ -15,6 +15,6 @@
 * pip install -r requirements.txt
 * python3 app.py
 
-#### Sudo installation
+#### Sudo installation:
 * sudo pip install -r requirements.txt
 * python3 app.py
